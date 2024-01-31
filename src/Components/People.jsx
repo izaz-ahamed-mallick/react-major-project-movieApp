@@ -8,7 +8,7 @@ import Loading from "./Loading";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const People = () => {
-  document.title = "SPMovies || Tv Shows";
+  document.title = "SPMovies || People";
   const navigate = useNavigate();
   const [Person, setPerson] = useState("popular");
 

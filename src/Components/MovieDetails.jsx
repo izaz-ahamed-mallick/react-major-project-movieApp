@@ -14,6 +14,7 @@ import noImage from "/noimage.jpg";
 import HorizontalCard from "../templates/HorizontalCard";
 
 const MovieDetails = () => {
+  
   const { pathname } = useLocation();
   const { info } = useSelector((state) => state.movie);
   const { id } = useParams();
