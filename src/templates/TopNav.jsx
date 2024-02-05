@@ -7,17 +7,15 @@ const TopNav = () => {
   const [inpvalue, setInpValue] = useState("");
   const [searchData, setSearchData] = useState([]);
 
-  const getSearchData =useCallback(async()=>{
-   
-      try {
-        const { data } = await axios.get(`/search/multi?query=${inpvalue}`);
-       
-        setSearchData(data.results);
-      } catch (error) {
-        console.log("Error:", error);
-      }
-   
-  },[inpvalue])
+  const getSearchData = useCallback(async () => {
+    try {
+      const { data } = await axios.get(`/search/multi?query=${inpvalue}`);
+
+      setSearchData(data.results);
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  }, [inpvalue]);
 
   useEffect(() => {
     getSearchData();
@@ -29,9 +27,9 @@ const TopNav = () => {
 
   return searchData ? (
     <>
-      <div className={ `w-full bg-[#1F1E24]`}>
+      <div className={`w-full bg-[#1F1E24]`}>
         <div
-          className={`w-[100%] h-[10vh] flex items-center px-32 gap-x-7 relative`}
+          className={`flex items-center gap-x-2 mt-0 h-[8vh] lg:w-[100%] lg:h-[10vh] lg:flex lg:items-center lg:px-32 lg:gap-x-7 lg:relative`}
         >
           <i className=" text-2xl text-zinc-600 ri-search-line"></i>
           <input
@@ -48,10 +46,11 @@ const TopNav = () => {
             ></i>
           )}
 
-          <div className=" z-[100] absolute top-[90%] left-[18%] w-[60%] bg-zinc-400 max-h-[50vh] rounded overflow-auto">
+          <div className=" max-h-[30vh]  z-[100] absolute top-[90%] left-[18%] w-[60%] bg-zinc-400  lg:max-h-[50vh] rounded overflow-auto">
             {searchData.map((data, index) => {
               return (
-                <Link to={`/${data.media_type}/details/${data.id}`}
+                <Link
+                  to={`/${data.media_type}/details/${data.id}`}
                   key={index}
                   className=" z-[100] py-5 px-3 border-b-2 hover:text-black hover:bg-zinc-500 duration-200  text-zinc-600 flex justify-start items-center border-zinc-300"
                 >
@@ -71,10 +70,10 @@ const TopNav = () => {
                     alt=""
                   />
                   <span>
-                    {data.title||data.name ||
+                    {data.title ||
+                      data.name ||
                       data.original_name ||
-                      data.original_title 
-                      }
+                      data.original_title}
                   </span>
                 </Link>
               );
