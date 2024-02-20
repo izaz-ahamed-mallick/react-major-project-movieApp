@@ -13,7 +13,7 @@ const TopNav = () => {
 
       setSearchData(data.results);
     } catch (error) {
-      console.log("Error:", error);
+      console.log(error);
     }
   }, [inpvalue]);
 

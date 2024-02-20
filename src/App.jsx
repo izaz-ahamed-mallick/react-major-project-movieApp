@@ -17,7 +17,7 @@ import NotFound from "./Components/NotFound";
 function App() {
   return (
     <>
-      <div className="w-full h-[160vh]  bg-[#1F1E24] lg:h-screen">
+      <div className="w-full h-[16 0vh]  bg-[#1F1E24] lg:h-screen">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/trending" element={<Trending />} />
