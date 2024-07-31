@@ -13,37 +13,21 @@ git clone https://github.com/izaz-ahamed-mallick/movie-app.git
 cd movie-app
 Install dependencies:
 
-bash
-Copy code
+
+
 npm install
 # or
 yarn install
 Start the development server:
 
-bash
-Copy code
+
+
 npm run dev
 # or
 yarn dev
 The app should now be running at http://localhost:3000!
 
-🔧 Project Structure
-csharp
-Copy code
-movie-app/
-├── public/             # Public assets
-├── src/
-│   ├── components/     # React components
-│   ├── hooks/          # Custom hooks
-│   ├── pages/          # Page components
-│   ├── styles/         # Stylesheets
-│   ├── utils/          # Utility functions
-│   ├── App.jsx         # Main App component
-│   ├── index.jsx       # Entry point
-├── .eslintrc.js        # ESLint configuration
-├── vite.config.js      # Vite configuration
-├── package.json        # Project dependencies
-├── README.md           # Project documentation
+
 🌟 Features
 Movie Search: Search for movies, TV shows, and actors.
 Responsive Design: Optimized for mobile and desktop.
