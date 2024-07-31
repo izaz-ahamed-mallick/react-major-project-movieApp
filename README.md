@@ -9,9 +9,6 @@ Node.js (v14 or later)
 npm (v6 or later) or Yarn
 Installation
 Clone the repository:
-
-bash
-Copy code
 git clone https://github.com/izaz-ahamed-mallick/movie-app.git
 cd movie-app
 Install dependencies:
@@ -65,16 +62,15 @@ This project uses Tailwind CSS for styling. The configurations can be found in t
 
 📦 Deployment
 To build the project for production, run:
+https://react-major-project-movie-app.vercel.app/
 
 bash
-Copy code
 npm run build
 # or
 yarn build
 The build output will be in the dist/ directory. You can deploy the contents of this directory to your preferred hosting provider.
 
-📝 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+
 
 💬 Contact
 For any inquiries or contributions, feel free to reach out!
