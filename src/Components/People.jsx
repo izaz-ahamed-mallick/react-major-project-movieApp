@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TopNav from "../templates/TopNav";
 import DropDown from "../templates/DropDown";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "../Utils/AxiosGet";
 import Card from "../templates/Card";
 import Loading from "./Loading";
