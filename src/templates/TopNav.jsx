@@ -2,7 +2,6 @@ import axios from "../Utils/AxiosGet";
 import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import noimg from "/noimage.jpg";
-import Header from "./Header";
 
 const TopNav = () => {
     const [inpvalue, setInpValue] = useState("");

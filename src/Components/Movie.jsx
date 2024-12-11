@@ -44,19 +44,19 @@ const Movie = () => {
     return movie.length > 0 ? (
         <>
             <div className="w-full h-full">
-                <div className=" fixed top-0 bg-[#1F1E24] z-[100] w-full flex items-center justify-between px-[3%] ">
-                    <h1 className="text-2xl font-semibold text-zinc-600 w-[15%] ">
+                <div className="fixed top-0 bg-[#1F1E24] z-[100]  w-full flex items-center justify-between flex-col md:flex-row px-[3%] ">
+                    <h1 className="text-lg md:text-xl lg:text-2xl font-semibold text-zinc-600 w-full md:w-[30%]">
                         <i
                             onClick={() => navigate(-1)}
-                            className=" hover:text-[#6556CD] ri-arrow-left-line cursor-pointer"
+                            className="hover:text-[#6556CD] ri-arrow-left-line cursor-pointer"
                         ></i>
                         Movie
-                        <span className="text-lg ml-1 text-zinc-700">
+                        <span className="text-sm md:text-base ml-1 text-zinc-400">
                             ({movieData})
                         </span>
                     </h1>
-                    <div className=" w-[75%] text-white flex items-center justify-end ">
-                        <div className="flex-1">
+                    <div className="w-full md:w-[70%] flex flex-wrap md:flex-nowrap justify-between items-center mt-2 md:mt-0">
+                        <div className="w-full md:w-[45%] lg:w-[90%]">
                             <TopNav />
                         </div>
                         <DropDown

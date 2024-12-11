@@ -23,7 +23,7 @@ const SideNav = () => {
 
             {/* Mobile Navigation Menu */}
             <nav
-                className={`lg:hidden absolute top-[20%] right-0 w-[70%] bg-[#1F1E24] p-3 z-50 ${
+                className={`lg:hidden absolute top-[20%] sm:top-[25%] right-0 w-[70%] bg-[#1F1E24] p-3 z-50 ${
                     menubtn
                         ? "opacity-0 pointer-events-none"
                         : "opacity-100 pointer-events-auto"

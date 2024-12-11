@@ -20,6 +20,13 @@ const MovieDetails = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const ScrollTopFun = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    };
+
     useEffect(() => {
         dispatch(movieAction(id));
         return () => {
@@ -36,13 +43,14 @@ const MovieDetails = () => {
                     backgroundPosition: "center",
                     backgroundSize: "cover",
                 }}
-                className="w-[100%] min-h-[130vh] px-12 relative"
+                className="w-full min-h-[130vh] px-4 md:px-12 relative"
             >
-                <nav className="w-full h-[8vh] flex items-center justify-between text-zinc-300 ">
-                    <div className="flex  gap-10 text-2xl">
+                {/* Navigation */}
+                <nav className="w-full h-[8vh] flex  sm:flex-row items-center justify-between text-zinc-300 text-center gap-4 sm:gap-0">
+                    <div className="flex gap-4 sm:gap-10 text-2xl">
                         <i
                             onClick={() => navigate(-1)}
-                            className=" hover:text-[#6556CD] ri-arrow-left-line cursor-pointer"
+                            className="hover:text-[#6556CD] ri-arrow-left-line cursor-pointer"
                         ></i>
                         <a
                             rel="noreferrer"
@@ -68,18 +76,18 @@ const MovieDetails = () => {
                     </div>
                     <button
                         onClick={() => navigate("/")}
-                        className=" mt-2 hover:bg-[#6556CD] duration-200 text-lg px-4 py-1 border border-zinc-300"
+                        className="mt-2 text-md hover:bg-[#6556CD] duration-200 sm:text-lg px-1 sm:px-4 py-1 border border-zinc-300"
                     >
                         Home
                     </button>
                 </nav>
 
-                {/* Main-Content */}
-
-                <div className="w-full flex mt-2">
-                    <div>
+                {/* Main Content */}
+                <div className="w-full flex flex-col md:flex-row mt-4 gap-4">
+                    {/* Poster */}
+                    <div className="w-full md:w-[30%]">
                         <img
-                            className="h-[70vh] object-cover object-top-right rounded-lg shadow-[8px_17px_38px_2px_rgba(0,0,0,0.3)]"
+                            className="w-full h-auto object-cover object-top rounded-lg shadow-lg"
                             src={
                                 info.detail.poster_path ||
                                 info.detail.backdrop_path ||
@@ -95,53 +103,48 @@ const MovieDetails = () => {
                         />
                     </div>
 
-                    <div className="content w-[80%] ml-[4%] text-white">
-                        <h1 className="text-5xl font-bold">
+                    {/* Details */}
+                    <div className="content w-full md:w-[70%] text-white">
+                        <h1 className="text-3xl md:text-5xl font-bold">
                             {info.detail.title ||
                                 info.detail.original_name ||
                                 info.detail.original_title}
-
                             <small className="text-lg">
                                 ({info.detail.release_date.split("-")[0]})
                             </small>
                         </h1>
-                        <div className="flex items-center mt-4 mb-2 gap-4">
-                            <div className=" text-xl text-white w-[7vh] h-[7vh] bg-yellow-600 flex items-center justify-center rounded-full">
+                        <div className="flex flex-wrap items-center mt-4 mb-2 gap-4">
+                            <div className="text-lg md:text-xl text-white w-[7vh] h-[7vh] bg-yellow-600 flex items-center justify-center rounded-full">
                                 {(info.detail.vote_average * 10).toFixed()}
                                 <sup>%</sup>
                             </div>
-                            <h1 className="text-xl font-semibold leading-5 w-[20px] ml-1 mr-12">
+                            <h1 className="text-lg md:text-xl font-semibold">
                                 User Rating
                             </h1>
-
-                            <h1>
-                                {info.detail.release_date}({info.detail.status})
+                            <h1 className="text-sm md:text-base">
+                                {info.detail.release_date} ({info.detail.status}
+                                )
                             </h1>
-                            <h1>
+                            <h1 className="text-sm md:text-base">
                                 {info.detail.genres
                                     .map((g) => g.name)
                                     .join(",")}
                             </h1>
-                            <h1>{info.detail.runtime}mins</h1>
+                            <h1 className="text-sm md:text-base">
+                                {info.detail.runtime} mins
+                            </h1>
                         </div>
                         <div>
-                            <p className="text-xl font-semibold italic mt-2 mb-2">
+                            <p className="text-sm md:text-lg font-semibold italic mt-2 mb-2">
                                 {info.detail.tagline}
                             </p>
-                            <h1 className="text-xl font-semibold my-2">
+                            <h1 className="text-sm md:text-lg font-semibold my-2">
                                 Overview
                             </h1>
                             <p>{info.detail.overview}</p>
-                            <h1 className="font-semibold text-xl my-2">
-                                Translated language
-                            </h1>
-                            <p className="mb-4">
-                                {info.translations
-                                    .map((l) => l.english_name)
-                                    .join(", ")}
-                            </p>
                             <Link
-                                className=" bg-[#6556CD] hover:bg-[#5b49d1] duration-200 px-4 py-3 rounded-lg "
+                                onClick={ScrollTopFun}
+                                className="bg-[#6556CD] hover:bg-[#5b49d1] duration-200 px-4 py-2 mt-4 rounded-lg inline-block"
                                 to={`${pathname}/trailer`}
                             >
                                 <i className="fa-solid fa-play mr-1"></i>Play
@@ -151,66 +154,55 @@ const MovieDetails = () => {
                     </div>
                 </div>
 
-                {/* Additional Link */}
-                <div className="w-[80%]  flex gap-5 mt-10  text-white font-bold text-xl">
-                    {info.watchProvider && info.watchProvider.flatrate && (
-                        <div className="flex justify-center flex-col gap-2">
+                {/* Additional Links */}
+                <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 text-white">
+                    {info.watchProvider?.flatrate && (
+                        <div className="flex flex-col gap-2 items-center">
                             <h1>Stream</h1>
-                            {info.watchProvider.flatrate.map((f, i) => {
-                                return (
-                                    <img
-                                        key={i}
-                                        title={`${f.provider_name}`}
-                                        className=" w-[7vh] object-cover rounded-lg shadow-[8px_17px_38px_2px_rgba(0,0,0,0.3)]"
-                                        src={`https://image.tmdb.org/t/p/original/${f.logo_path}`}
-                                        alt=""
-                                    />
-                                );
-                            })}
+                            {info.watchProvider.flatrate.map((f, i) => (
+                                <img
+                                    key={i}
+                                    title={`${f.provider_name}`}
+                                    className="w-[7vh] rounded-lg shadow-lg"
+                                    src={`https://image.tmdb.org/t/p/original/${f.logo_path}`}
+                                    alt=""
+                                />
+                            ))}
                         </div>
                     )}
-                    {info.watchProvider && info.watchProvider.buy && (
-                        <div className="flex justify-center flex-col  gap-2">
+                    {info.watchProvider?.buy && (
+                        <div className="flex  gap-2 items-center">
                             <h1>Buy</h1>
-                            <div className="flex items-center gap-4">
-                                {info.watchProvider.buy.map((b, i) => {
-                                    return (
-                                        <img
-                                            key={i}
-                                            title={`${b.provider_name}`}
-                                            className="w-[7vh] object-cover object-top-right rounded-lg shadow-[8px_17px_38px_2px_rgba(0,0,0,0.3)]"
-                                            src={`https://image.tmdb.org/t/p/original/${b.logo_path}`}
-                                            alt=""
-                                        />
-                                    );
-                                })}
-                            </div>
+                            {info.watchProvider.buy.map((b, i) => (
+                                <img
+                                    key={i}
+                                    title={`${b.provider_name}`}
+                                    className="w-[7vh] rounded-lg shadow-lg"
+                                    src={`https://image.tmdb.org/t/p/original/${b.logo_path}`}
+                                    alt=""
+                                />
+                            ))}
                         </div>
                     )}
-                    {info.watchProvider && info.watchProvider.rent && (
-                        <div className="flex justify-center flex-col gap-2">
+                    {info.watchProvider?.rent && (
+                        <div className="flex  gap-2 items-center">
                             <h1>Rent</h1>
-                            <div className="flex items-center gap-4">
-                                {info.watchProvider.rent.map((r, i) => {
-                                    return (
-                                        <img
-                                            key={i}
-                                            title={`${r.provider_name}`}
-                                            className="w-[7vh] object-cover object-top-right rounded-lg shadow-[8px_17px_38px_2px_rgba(0,0,0,0.3)]"
-                                            src={`https://image.tmdb.org/t/p/original/${r.logo_path}`}
-                                            alt=""
-                                        />
-                                    );
-                                })}
-                            </div>
+                            {info.watchProvider.rent.map((r, i) => (
+                                <img
+                                    key={i}
+                                    title={`${r.provider_name}`}
+                                    className="w-[7vh] rounded-lg shadow-lg"
+                                    src={`https://image.tmdb.org/t/p/original/${r.logo_path}`}
+                                    alt=""
+                                />
+                            ))}
                         </div>
                     )}
                 </div>
 
-                {/* Recomandation */}
-                <hr className="mt-8 mb-4 border-none h-[2px] bg-zinc-500" />
-                <div className=" text-white ">
-                    <h1 className="text-2xl font-semibold mb-2">
+                {/* Recommendations */}
+                <div className="text-white mt-10">
+                    <h1 className="text-xl md:text-2xl font-semibold mb-4">
                         Recommendations & Similar
                     </h1>
                     <HorizontalCard
@@ -222,6 +214,7 @@ const MovieDetails = () => {
                         }
                     />
                 </div>
+
                 <Outlet />
             </div>
         </>

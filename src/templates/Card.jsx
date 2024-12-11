@@ -5,7 +5,7 @@ import noImage from "/noimage.jpg";
 const Card = ({ data, title }) => {
     return (
         <>
-            <div className="w-full h-full flex justify-center flex-wrap gap-6 px-4 bg-[#1F1E24] mt-[130px]">
+            <div className="w-full h-full flex justify-center flex-wrap gap-6 px-4 bg-[#1F1E24] mt-[170px] sm:mt-[100px]">
                 {data.map((c, i) => (
                     <Link
                         to={`/${c.media_type || title}/details/${c.id}`}
